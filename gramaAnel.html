@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gramatura do Anel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #747474; 
+            color: #000000; 
+        }
+
+        #container {
+            border: 2px solid #3498db;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .enunciado {
+            font-weight: bold;
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-size: 18px;
+            color: #555;
+        }
+
+        input {
+            padding: 8px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 1em;
+            background-color: #3498db; 
+            color: rgb(255, 255, 255);
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #2980b9; 
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-top: 20px;
+            color: #3498db; 
+        }
+
+        span {
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        img {
+            max-width: 50%;
+            height: auto;
+            margin: 20px auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container">
+        <h2>Gramatura do Anel</h2>
+
+        <p class="enunciado">Para um dedo de diâmetro de 1.5 cm, qual seria a altura máxima para um anel de 20 g de ouro, cuja densidade é de 19.32 g/cm³, e espessura de 0.25 cm?</p>
+
+        <label for="alturaAnel">Informe a altura do Anel (X):</label>
+        <input type="number" id="alturaAnel" step="any" placeholder="Insira a altura do anel">
+
+        <button onclick="calcularAlturaMaxima()">Calcular Altura Máxima</button>
+
+        <p><span id="resultado"></span></p>
+
+        <img src="anel.jpg" alt="Anel" id="imagemAnel">
+
+        <script>
+            window.onload = function() {
+                document.getElementById('imagemAnel').style.display = 'block';
+            };
+
+            function calcularAlturaMaxima() {
+                var alturaAnel = parseFloat(document.getElementById('alturaAnel').value);
+
+                if (!isNaN(alturaAnel)) {
+                    // Cálculo da altura máxima usando a expressão xπ * 0.4375 * 19.32
+                    // V = πr²x -> πR²x - πr²x -> πx(R²-r²) -> xπ(1,75² - 1,5² = f(x) = xπ * 0.4375 * d
+                    // V = volume; r (dedo)= 1,5; R (r+espessura) = 1,75 ; d (densidade) = 19.32
+                    // Altura maxima = x = 0,7532
+                    var alturaMaxima = alturaAnel * Math.PI * 0.4375 * 19.32;
+
+                    document.getElementById('resultado').textContent = "A Gramatura máxima do anel é aproximadamente: " + alturaMaxima.toFixed(4) + "g";
+                } else {
+                    alert('Por favor, insira uma altura válida.');
+                }
+            }
+        </script>
+    </div>
+
+</body>
+</html>
